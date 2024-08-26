@@ -10,10 +10,9 @@ body {
 
 .busqueda-filtro-container {
     display: flex;
-    justify-content: center;
     gap: 20px; /* Espacio entre los elementos */
-    flex-wrap: wrap; /* Permite el ajuste en pantallas pequeñas */
-    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .capsula {
@@ -134,49 +133,26 @@ body {
     border-radius: 0 0 15px 15px;
 }
 
-/* Colores de cartas por tipo */
-.carta-fuego {
-    background: linear-gradient(to bottom right, #fddfdf, #f8b5b5);
-}
-
-.carta-agua {
-    background: linear-gradient(to bottom right, #d0e4f0, #a0c4f0);
-}
-
-.carta-planta {
-    background: linear-gradient(to bottom right, #d3f9d8, #a8e0a3);
-}
-
-.carta-electrico {
-    background: linear-gradient(to bottom right, #f9f6a0, #f0e965);
-}
-
-/* Otros estilos para cartas por categoría */
-.carta-basica {
-    border-color: #aaa;
-}
-
-.carta-rara {
-    border-color: #8a2be2;
-}
-
-.carta-legendaria {
-    border-color: #ffd700;
-}
-
 /* Ajustes para la disposición horizontal */
 .busqueda-filtro-container {
     display: flex;
     gap: 20px; /* Espacio entre el campo de búsqueda y el filtro */
     align-items: center;
-    flex-wrap: wrap;
 }
 
-.capsula.busqueda, .capsula.filtro.tipo {
+.capsula.busqueda {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 300px; /* Ajusta el tamaño si es necesario */
     margin: 10px;
+}
+
+.capsula.filtro.tipo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px; /* Ajusta el tamaño si es necesario */
 }
 
 
