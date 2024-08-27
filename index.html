@@ -7,28 +7,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Sección de búsqueda por nombre de Pokémon -->
-    <div class="capsula busqueda">
-        <label for="pokemon-busqueda">Buscar por nombre o numero:</label>
-        <input type="text" id="pokemon-busqueda" placeholder="Escribe el nombre del Pokémon...">
-        <button id="boton-buscar">Buscar</button>
+    <!-- Contenedor para búsqueda y filtro -->
+    <div class="busqueda-filtro-container">
+        <!-- Sección de búsqueda por nombre de Pokémon -->
+        <div class="capsula busqueda">
+            <label for="pokemon-busqueda">Buscar por nombre o número:</label>
+            <input type="text" id="pokemon-busqueda" placeholder="Escribe el nombre del Pokémon...">
+            <button id="boton-buscar">Buscar</button>
+        </div>
+
+        <!-- Sección de filtro por tipo -->
+        <div class="capsula filtro tipo">
+            <label for="filtro-tipo">Buscar por tipo</label>
+            <select id="filtro-tipo">
+                <option value="todos">Todos</option>
+                <!-- Opciones de tipo se cargarán dinámicamente -->
+            </select>
+        </div>
     </div>
 
-    <!-- Sección de filtro por tipo -->
-    <div class="capsula filtro tipo">
-        <label for="filtro-tipo">Buscar por tipo</label>
-        <select id="filtro-tipo">
-            <option value="todos">Todos</option>
-            <!-- Opciones de tipo se cargarán dinámicamente -->
-        </select>
-    </div>
+    <!-- Contenedor principal para las cartas de Pokémon -->
+    <div id="contenedor-pokemon"></div>
+    
+    <!-- Botón para cargar más Pokémon -->
+    <button id="boton-cargar-mas">Cargar más Pokémon</button>
 
-    <!-- Contenedor para las cartas de Pokémon -->
-    <div id="contenedor-pokemon">
-        <!-- Las cartas de Pokémon se generarán dinámicamente aquí -->
-    </div>
-
-    <!-- Vinculación del script -->
     <script src="script.js"></script>
 </body>
 </html>

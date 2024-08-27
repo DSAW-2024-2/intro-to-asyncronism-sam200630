@@ -1,6 +1,7 @@
+/* Estilo general de la página */
 body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -8,23 +9,189 @@ body {
     align-items: center;
 }
 
+/* Contenedor principal de Pokémon */
+#contenedor-pokemon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Estilo de la carta de Pokémon */
+.pokemon-carta {
+    background: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);
+    border: 2px solid #bbb;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pokemon-carta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Cabecera de la carta (nombre y tipo) */
+.cabecera, .pie {
+    padding: 10px;
+    color: #fff; /* Texto en blanco para mejor contraste */
+}
+
+/* Estilo de la cabecera y el pie según el tipo de Pokémon */
+.carta-fire .cabecera, .carta-fire .pie {
+    background-color: #f08030; /* Color para tipo Fuego */
+}
+
+.carta-water .cabecera, .carta-water .pie {
+    background-color: #6890f0; /* Color para tipo Agua */
+}
+
+.carta-grass .cabecera, .carta-grass .pie {
+    background-color: #78c850; /* Color para tipo Planta */
+}
+
+.carta-electric .cabecera, .carta-electric .pie {
+    background-color: #f8d030; /* Color para tipo Eléctrico */
+}
+
+.carta-bug .cabecera, .carta-bug .pie {
+    background-color: #a8b820; /* Color para tipo Bicho */
+}
+
+.carta-normal .cabecera, .carta-normal .pie {
+    background-color: #a8a878; /* Color neutro para tipo Normal */
+}
+
+.carta-poison .cabecera, .carta-poison .pie {
+    background-color: #a040a0; /* Color para tipo Veneno */
+}
+
+.carta-flying .cabecera, .carta-flying .pie {
+    background-color: #a890f0; /* Color para tipo Volador */
+}
+
+.carta-fighting .cabecera, .carta-fighting .pie {
+    background-color: #c03028; /* Color para tipo Lucha */
+}
+
+.carta-ground .cabecera, .carta-ground .pie {
+    background-color: #e0c068; /* Color para tipo Tierra */
+}
+
+.carta-rock .cabecera, .carta-rock .pie {
+    background-color: #b8a038; /* Color para tipo Roca */
+}
+
+.carta-ghost .cabecera, .carta-ghost .pie {
+    background-color: #705898; /* Color para tipo Fantasma */
+}
+
+.carta-psychic .cabecera, .carta-psychic .pie {
+    background-color: #f85888; /* Color para tipo Psíquico */
+}
+
+.carta-ice .cabecera, .carta-ice .pie {
+    background-color: #98d8d8; /* Color para tipo Hielo */
+}
+
+.carta-dragon .cabecera, .carta-dragon .pie {
+    background-color: #7038f8; /* Color para tipo Dragón */
+}
+
+.carta-dark .cabecera, .carta-dark .pie {
+    background-color: #705848; /* Color para tipo Siniestro */
+}
+
+.carta-fairy .cabecera, .carta-fairy .pie {
+    background-color: #ee99ac; /* Color para tipo Hada */
+}
+
+.carta-steel .cabecera, .carta-steel .pie {
+    background-color: #b8b8d0; /* Color para tipo Acero */
+}
+
+.carta-unknown .cabecera, .carta-unknown .pie {
+    background-color: #68a090; /* Color para tipo Desconocido */
+}
+
+/* Imagen del Pokémon */
+.imagen-pokemon img {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: contain;
+}
+
+/* Información del Pokémon (altura, peso, etc.) */
+.info-pokemon {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: left;
+    background-color: #f3f3f3;
+    border-top: 1px solid #ccc;
+}
+
+.info-pokemon p {
+    margin: 5px 0;
+}
+
+/* Pie de la carta */
+.pie {
+    background-color: #eaeaea;
+    padding: 8px;
+    font-style: italic;
+    color: #555;
+}
+
+/* Botón para cargar más Pokémon */
+#boton-cargar-mas {
+    background-color: #ffd700;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#boton-cargar-mas:hover {
+    background-color: #ffbf00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del contenedor de búsqueda y filtro */
 .busqueda-filtro-container {
     display: flex;
     gap: 20px; /* Espacio entre los elementos */
     align-items: center;
-    flex-wrap: wrap;
+    margin-bottom: 20px; /* Espacio inferior para separar de las cartas */
 }
 
+/* Estilo de la cápsula para los buscadores y botones */
 .capsula {
     background: linear-gradient(to bottom right, #f8f8f8, #e0e0e0);
     border: 2px solid #aaa;
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 250px; /* Tamaño reducido */
-    text-align: center;
     min-width: 200px; /* Ancho mínimo para la cápsula */
+    text-align: center;
     box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    height: 200px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .capsula label {
@@ -59,102 +226,31 @@ body {
     background-color: #f4c300;
 }
 
-#contenedor-pokemon {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
+/* Ajuste de estilo en dispositivos móviles */
+@media (max-width: 768px) {
+    #contenedor-pokemon {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pokemon-carta {
+        width: 90%;
+        height: auto; /* Ajusta la altura automáticamente para dispositivos móviles */
+        margin-bottom: 20px;
+    }
+
+    #boton-cargar-mas {
+        width: 90%;
+        padding: 12px;
+    }
+
+    .busqueda-filtro-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .capsula {
+        width: 90%;
+        height: auto;
+    }
 }
-
-.pokemon-carta {
-    background: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);
-    border: 2px solid #bbb;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.pokemon-carta .cabecera {
-    background-color: #f7d02c;
-    color: #333;
-    padding: 10px;
-    font-weight: bold;
-    border-bottom: 1px solid #ccc;
-    border-radius: 15px 15px 0 0;
-}
-
-.pokemon-carta .cabecera h2 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.pokemon-carta .cabecera .tipo {
-    font-size: 0.9em;
-    margin-top: 5px;
-}
-
-.pokemon-carta .imagen-pokemon {
-    background-color: #fff;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-.pokemon-carta .imagen-pokemon img {
-    width: 100%;
-    height: auto;
-    max-height: 180px;
-    object-fit: contain;
-}
-
-.pokemon-carta .info-pokemon {
-    padding: 10px;
-    font-size: 0.9em;
-    text-align: left;
-    background-color: #f3f3f3;
-    border-top: 1px solid #ccc;
-}
-
-.pokemon-carta .info-pokemon p {
-    margin: 5px 0;
-}
-
-.pokemon-carta .pie {
-    background-color: #f7d02c;
-    color: #333;
-    padding: 5px;
-    font-size: 0.8em;
-    border-top: 1px solid #ccc;
-    border-radius: 0 0 15px 15px;
-}
-
-/* Ajustes para la disposición horizontal */
-.busqueda-filtro-container {
-    display: flex;
-    gap: 20px; /* Espacio entre el campo de búsqueda y el filtro */
-    align-items: center;
-}
-
-.capsula.busqueda {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px; /* Ajusta el tamaño si es necesario */
-    margin: 10px;
-}
-
-.capsula.filtro.tipo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px; /* Ajusta el tamaño si es necesario */
-}
-
-
-
-

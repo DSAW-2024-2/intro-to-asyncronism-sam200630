@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonBuscar = document.getElementById("boton-buscar");
     const inputBusqueda = document.getElementById("pokemon-busqueda");
     const filtroTipo = document.getElementById("filtro-tipo");
+    const botonCargarMas = document.getElementById("boton-cargar-mas");
 
-    // Diccionario de traducciones
     const traducciones = {
         types: {
             fire: "Fuego",
@@ -23,139 +23,123 @@ document.addEventListener("DOMContentLoaded", () => {
             ice: "Hielo",
             dragon: "Dragón",
             dark: "Siniestro",
-            fairy: "Hada"
-            // Agrega aquí otros tipos si es necesario
+            fairy: "Hada",
+            steel: "Acero",
+            unknown: "Desconocido"
         },
         abilities: {
+            // Agregar traducciones de habilidades si es necesario
         }
     };
 
-    // Función para obtener todos los tipos de Pokémon de la API y llenar el filtro de tipo
     function cargarTipos() {
         fetch('https://pokeapi.co/api/v2/type')
             .then(response => response.json())
             .then(data => {
                 data.results.forEach(tipo => {
-                    // Excluir los tipos "steel" y "unknown"
-                    if (tipo.name !== 'steel' && tipo.name !== 'unknown') {
-                        const opcion = document.createElement('option');
-                        opcion.value = tipo.name;
-                        opcion.textContent = traducciones.types[tipo.name] || tipo.name.charAt(0).toUpperCase() + tipo.name.slice(1);
-                        filtroTipo.appendChild(opcion);
-                    }
+                    const opcion = document.createElement('option');
+                    opcion.value = tipo.name;
+                    opcion.textContent = traducciones.types[tipo.name] || tipo.name.charAt(0).toUpperCase() + tipo.name.slice(1);
+                    filtroTipo.appendChild(opcion);
                 });
-            })
-            .catch(error => console.error('Error al cargar los tipos:', error));
+            });
     }
 
-    // Función para obtener datos de un Pokémon por nombre o ID
     function obtenerDatosPokemon(identificadorPokemon) {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${identificadorPokemon}`)
+        return fetch(`https://pokeapi.co/api/v2/pokemon/${identificadorPokemon}`)
             .then(response => response.json())
-            .then(data => {
-                crearCartaPokemon(data);
-            })
             .catch(error => console.error('Error al obtener los datos del Pokémon:', error));
     }
 
-    // Función para crear y mostrar una carta de Pokémon
     function crearCartaPokemon(data) {
         const pokemonCarta = document.createElement("div");
+        pokemonCarta.classList.add("pokemon-carta");
 
-        // Asignar clase de categoría basado en el poder
-        let claseCategoria = 'carta-basica'; 
-        if (data.stats[1].base_stat > 100) {
-            claseCategoria = 'carta-rara';
-        }
-        if (data.stats[1].base_stat > 150) {
-            claseCategoria = 'carta-legendaria';
-        }
-        
-        // Asignar clase de tipo basado en el tipo de Pokémon
-        const tipo = data.types[0].type.name;
-        let claseTipo = '';
-        switch(tipo) {
-            case 'fire':
-                claseTipo = 'carta-fuego';
-                break;
-            case 'water':
-                claseTipo = 'carta-agua';
-                break;
-            case 'grass':
-                claseTipo = 'carta-planta';
-                break;
-            case 'electric':
-                claseTipo = 'carta-electrico';
-                break;
-            default:
-                claseTipo = '';
-        }
+        const tipos = data.types.map(typeInfo => typeInfo.type.name);
+        const tipoPrincipal = tipos[0];
+        const claseTipo = `carta-${tipoPrincipal}`;
 
-        pokemonCarta.classList.add("pokemon-carta", claseCategoria, claseTipo);
+        pokemonCarta.classList.add(claseTipo);
 
-        const contenidoPokemon = `
-            <div class="cabecera">
-                <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
-                <span class="tipo">Tipo: ${data.types.map(typeInfo => traducciones.types[typeInfo.type.name] || typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1)).join(", ")}</span>
-            </div>
-            <div class="imagen-pokemon">
-                <img src="${data.sprites.front_default}" alt="${data.name}">
-            </div>
-            <div class="info-pokemon">
-                <p><strong>N.º:</strong> ${data.id}</p>
-                <p><strong>Altura:</strong> ${data.height / 10} m</p>
-                <p><strong>Peso:</strong> ${data.weight / 10} kg</p>
-                <p><strong>Habilidad:</strong> ${data.abilities.map(abilityInfo => traducciones.abilities[abilityInfo.ability.name] || abilityInfo.ability.name.charAt(0).toUpperCase() + abilityInfo.ability.name.slice(1)).join(", ")}</p>
-            </div>
+        const cabecera = document.createElement("div");
+        cabecera.classList.add("cabecera");
+        cabecera.innerHTML = `
+            <h2>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h2>
+            <span class="tipo">Tipos: ${tipos.map(tipo => traducciones.types[tipo]).join(", ")}</span>
         `;
-        pokemonCarta.innerHTML = contenidoPokemon;
+
+        const imagenContenedor = document.createElement("div");
+        imagenContenedor.classList.add("imagen-pokemon");
+        const imagen = document.createElement("img");
+        imagen.src = data.sprites.other["official-artwork"].front_default || data.sprites.front_default;
+        imagen.alt = data.name;
+        imagenContenedor.appendChild(imagen);
+
+        const info = document.createElement("div");
+        info.classList.add("info-pokemon");
+        info.innerHTML = `
+            <p>Altura: ${data.height / 10} m</p>
+            <p>Peso: ${data.weight / 10} kg</p>
+        `;
+
+        const pie = document.createElement("div");
+        pie.classList.add("pie");
+        pie.innerText = `#${data.id.toString().padStart(3, '0')}`;
+
+        pokemonCarta.appendChild(cabecera);
+        pokemonCarta.appendChild(imagenContenedor);
+        pokemonCarta.appendChild(info);
+        pokemonCarta.appendChild(pie);
+
         contenedorPokemon.appendChild(pokemonCarta);
     }
 
-    async function mostrarPokemonsAleatorios(cantidad) {
-        contenedorPokemon.innerHTML = "";
-        const idsAleatorios = Array.from({ length: cantidad }, () => Math.floor(Math.random() * 898) + 1);
-
-        idsAleatorios.forEach(id => {
-            obtenerDatosPokemon(id);
-        });
-    }
-
-    async function filtrarPokemons() {
-        const tipoSeleccionado = filtroTipo.value;
-
-        contenedorPokemon.innerHTML = "";
-
-        if (tipoSeleccionado === "todos") {
-            mostrarPokemonsAleatorios(200);
-        } else {
-            try {
-                const response = await fetch(`https://pokeapi.co/api/v2/type/${tipoSeleccionado}`);
-                const typeData = await response.json();
-                typeData.pokemon.forEach(pokemonInfo => {
-                    obtenerDatosPokemon(pokemonInfo.pokemon.name);
-                });
-            } catch (error) {
-                console.error('Error al obtener Pokémon por tipo:', error);
-            }
-        }
+    function cargarPokemon(offset = 0, limit = 20) {
+        fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+            .then(response => response.json())
+            .then(data => {
+                const promesas = data.results.map(pokemon => obtenerDatosPokemon(pokemon.name));
+                Promise.all(promesas)
+                    .then(pokemones => pokemones.forEach(pokemon => crearCartaPokemon(pokemon)));
+            })
+            .catch(error => console.error('Error al cargar los Pokémon:', error));
     }
 
     botonBuscar.addEventListener("click", () => {
-        const entradaBusqueda = inputBusqueda.value.toLowerCase().trim();
-        if (entradaBusqueda) {
-            contenedorPokemon.innerHTML = "";
-            // Verifica si la entrada es un número o nombre
-            const esNumero = !isNaN(entradaBusqueda);
-            obtenerDatosPokemon(esNumero ? parseInt(entradaBusqueda) : entradaBusqueda);
+        const nombrePokemon = inputBusqueda.value.toLowerCase();
+        if (nombrePokemon) {
+            contenedorPokemon.innerHTML = ''; // Limpiar resultados anteriores
+            obtenerDatosPokemon(nombrePokemon).then(data => {
+                if (data) crearCartaPokemon(data);
+            });
         }
     });
 
-    filtroTipo.addEventListener("change", filtrarPokemons);
+    filtroTipo.addEventListener("change", () => {
+        const tipoSeleccionado = filtroTipo.value;
+        if (tipoSeleccionado === "todos") {
+            contenedorPokemon.innerHTML = '';
+            cargarPokemon();
+        } else {
+            fetch(`https://pokeapi.co/api/v2/type/${tipoSeleccionado}`)
+                .then(response => response.json())
+                .then(data => {
+                    contenedorPokemon.innerHTML = '';
+                    const promesas = data.pokemon.map(p => obtenerDatosPokemon(p.pokemon.name));
+                    Promise.all(promesas)
+                        .then(pokemones => pokemones.forEach(pokemon => crearCartaPokemon(pokemon)));
+                });
+        }
+    });
 
+    botonCargarMas.addEventListener("click", () => {
+        const numeroActualPokemon = document.querySelectorAll(".pokemon-carta").length;
+        cargarPokemon(numeroActualPokemon);
+    });
+
+    // Inicialización
     cargarTipos();
-    mostrarPokemonsAleatorios(200);
+    cargarPokemon();
 });
-
 
 
