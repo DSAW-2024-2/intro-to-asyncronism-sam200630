@@ -8,14 +8,14 @@
 </head>
 <body>
     <!-- Contenedor para búsqueda y filtro -->
+    <h1 id="titulo">Pokedex</h1>
     <div class="busqueda-filtro-container">
         <!-- Sección de búsqueda por nombre de Pokémon -->
         <div class="capsula busqueda">
             <label for="pokemon-busqueda">Buscar por nombre o número:</label>
-            <input type="text" id="pokemon-busqueda" placeholder="Escribe el nombre del Pokémon...">
+            <input type="text" id="pokemon-busqueda" placeholder="Escribe nombre o numero">
             <button id="boton-buscar">Buscar</button>
         </div>
-
         <!-- Sección de filtro por tipo -->
         <div class="capsula filtro tipo">
             <label for="filtro-tipo">Buscar por tipo</label>
@@ -25,13 +25,10 @@
             </select>
         </div>
     </div>
-
     <!-- Contenedor principal para las cartas de Pokémon -->
     <div id="contenedor-pokemon"></div>
-    
     <!-- Botón para cargar más Pokémon -->
     <button id="boton-cargar-mas">Cargar más Pokémon</button>
-
     <script src="script.js"></script>
 </body>
 </html>

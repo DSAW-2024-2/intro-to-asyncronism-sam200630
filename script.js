@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
             dark: "Siniestro",
             fairy: "Hada",
             steel: "Acero",
-            unknown: "Desconocido"
         },
         abilities: {
             // Agregar traducciones de habilidades si es necesario
@@ -114,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
-
     filtroTipo.addEventListener("change", () => {
         const tipoSeleccionado = filtroTipo.value;
         if (tipoSeleccionado === "todos") {
@@ -131,15 +129,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         }
     });
-
     botonCargarMas.addEventListener("click", () => {
         const numeroActualPokemon = document.querySelectorAll(".pokemon-carta").length;
         cargarPokemon(numeroActualPokemon);
     });
-
     // Inicialización
     cargarTipos();
     cargarPokemon();
 });
-
-
