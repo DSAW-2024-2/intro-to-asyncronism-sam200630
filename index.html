@@ -7,28 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Contenedor para búsqueda y filtro -->
-    <h1 id="titulo">Pokedex</h1>
+    <h1 id="titulo">Pokédex</h1>
     <div class="busqueda-filtro-container">
-        <!-- Sección de búsqueda por nombre de Pokémon -->
         <div class="capsula busqueda">
             <label for="pokemon-busqueda">Buscar por nombre o número:</label>
-            <input type="text" id="pokemon-busqueda" placeholder="Escribe nombre o numero">
+            <input type="text" id="pokemon-busqueda" placeholder="Escribe nombre o número">
             <button id="boton-buscar">Buscar</button>
         </div>
-        <!-- Sección de filtro por tipo -->
         <div class="capsula filtro tipo">
             <label for="filtro-tipo">Buscar por tipo</label>
             <select id="filtro-tipo">
                 <option value="todos">Todos</option>
-                <!-- Opciones de tipo se cargarán dinámicamente -->
             </select>
         </div>
     </div>
-    <!-- Contenedor principal para las cartas de Pokémon -->
     <div id="contenedor-pokemon"></div>
-    <!-- Botón para cargar más Pokémon -->
     <button id="boton-cargar-mas">Cargar más Pokémon</button>
+    <div id="pokemon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-contenido"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
