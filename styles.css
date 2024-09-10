@@ -47,7 +47,7 @@ body {
 
 /* Estilo de la carta de Pokémon */
 .pokemon-carta {
-    background: linear-gradient(to bottom right, #f8f8f88f, #f8f8f88f);
+    background: linear-gradient(to bottom right, #ffffff, #ffffff);
     border: 2px solid #000;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -164,8 +164,8 @@ body {
     padding: 10px;
     font-size: 0.9em;
     text-align: left;
-    background-color: #f3f3f3;
-    border-top: 1px solid #ccc;
+    background-color: #ffffff;
+    border-top: 1px solid #ffffff;
 }
 
 .info-pokemon p {
@@ -200,12 +200,12 @@ body {
 
 .estadistica-nombre {
     width: 80px;
-    font-weight: bold;
+    font-weight: bold;x 
 }
 
 .estadistica-barra {
     flex-grow: 1;
-    background-color: #e0e0e0;
+    background-color: #ffffff;
     border-radius: 5px;
     overflow: hidden;
 }
