@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         contenedorPokemon.appendChild(pokemonCarta);
     }
 
-    function cargarPokemon(offset = 0, limit = 20) {
+    function cargarPokemon(offset = 0, limit = 21) {
         fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
             .then(response => response.json())
             .then(data => {
