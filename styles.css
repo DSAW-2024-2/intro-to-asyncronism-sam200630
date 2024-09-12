@@ -1,12 +1,38 @@
 /* Estilo general de la página */
 body {
-    background-color: #f4f4f4;
+    background-image: url('fondo.jpg');  /* Establece la imagen de fondo */
+    background-size: cover;              /* Hace que la imagen cubra todo el fondo */
+    background-repeat: no-repeat;        /* Evita la repetición de la imagen */
+    background-attachment: fixed;        /* Fija la imagen de fondo para que no se desplace */
+    background-position: center;         /* Centra la imagen de fondo */
     font-family: 'Arial', sans-serif;
+    color: #000;                         /* Color de texto negro global */
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Selector universal para asegurar color negro en todos los elementos */
+* {
+    color: #000 !important; /* Fuerza el color negro en todos los textos */
+    box-sizing: border-box; /* Ayuda con el manejo del tamaño de los elementos */
+}
+
+#titulo {
+    font-family: 'Comic Sans MS', cursive, sans-serif;  /* Estilo de fuente divertido, tipo anime */
+    font-size: 3em;  /* Tamaño grande para destacarse */
+    color: #000;  /* Color negro para el título */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Sombra para dar efecto de profundidad */
+    text-align: center;  /* Centrando el texto en la página */
+    margin-top: 20px;  /* Espaciado superior */
+    margin-bottom: 20px;  /* Espaciado inferior */
+    background-color: #fff200;  /* Fondo amarillo estilo Pikachu */
+    padding: 10px 20px;  /* Espacio interno para que el título tenga aire */
+    border-radius: 15px;  /* Bordes redondeados para suavidad visual */
+    border: 3px solid #000;  /* Borde negro alrededor para destacarlo más */
+    display: inline-block;  /* Para que el título no ocupe todo el ancho */
 }
 
 /* Contenedor principal de Pokémon */
@@ -21,8 +47,8 @@ body {
 
 /* Estilo de la carta de Pokémon */
 .pokemon-carta {
-    background: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);
-    border: 2px solid #bbb;
+    background: linear-gradient(to bottom right, #ffffff, #ffffff);
+    border: 2px solid #000;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 300px;
@@ -37,10 +63,19 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Imagen del Pokémon */
+.imagen-pokemon img {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 6px rgb(0, 0, 0)); /* Añadir sombra */
+}
+
 /* Cabecera de la carta (nombre y tipo) */
 .cabecera, .pie {
     padding: 10px;
-    color: #fff; /* Texto en blanco para mejor contraste */
+    background-color: inherit; /* Mantener fondo de color según tipo */
 }
 
 /* Estilo de la cabecera y el pie según el tipo de Pokémon */
@@ -85,7 +120,7 @@ body {
 }
 
 .carta-rock .cabecera, .carta-rock .pie {
-    background-color: #b8a038; /* Color para tipo Roca */
+    background-color: #6b6b6b; /* Color para tipo Roca */
 }
 
 .carta-ghost .cabecera, .carta-ghost .pie {
@@ -116,10 +151,6 @@ body {
     background-color: #b8b8d0; /* Color para tipo Acero */
 }
 
-.carta-unknown .cabecera, .carta-unknown .pie {
-    background-color: #68a090; /* Color para tipo Desconocido */
-}
-
 /* Imagen del Pokémon */
 .imagen-pokemon img {
     width: 100%;
@@ -133,30 +164,64 @@ body {
     padding: 10px;
     font-size: 0.9em;
     text-align: left;
-    background-color: #f3f3f3;
-    border-top: 1px solid #ccc;
+    background-color: #ffffff;
+    border-top: 1px solid #ffffff;
 }
 
 .info-pokemon p {
     margin: 5px 0;
 }
 
-/* Pie de la carta */
+.info-pokemon a {
+    color: #0000ee;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .pie {
     background-color: #eaeaea;
     padding: 8px;
     font-style: italic;
-    color: #555;
+}
+
+/* Contenedor de estadísticas */
+.estadisticas-pokemon {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.estadistica {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.estadistica-nombre {
+    width: 80px;
+    font-weight: bold;x 
+}
+
+.estadistica-barra {
+    flex-grow: 1;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.estadistica-barra > div {
+    height: 10px;
+    border-radius: 5px;
 }
 
 /* Botón para cargar más Pokémon */
 #boton-cargar-mas {
     background-color: #ffd700;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #000;
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    color: #333;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     margin-top: 20px;
@@ -178,16 +243,16 @@ body {
 
 /* Estilo de la cápsula para los buscadores y botones */
 .capsula {
-    background: linear-gradient(to bottom right, #f8f8f8, #e0e0e0);
-    border: 2px solid #aaa;
+    background: linear-gradient(to bottom right, #f8f8f88f, #f8f8f88f);
+    border: 2px solid #000;
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     min-width: 200px; /* Ancho mínimo para la cápsula */
     text-align: center;
-    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    box-sizing: border-box;
     height: 200px;
-    width: 400px;
+    width: 460px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -199,15 +264,14 @@ body {
     margin-bottom: 10px;
     display: block;
     font-weight: bold;
-    color: #333;
 }
 
 .capsula input, .capsula select, .capsula button {
-    border: 2px solid #ddd;
+    border: 2px solid #000;
     border-radius: 10px;
     padding: 8px;
     font-size: 0.9em;
-    width: calc(100% - 18px); /* Ajuste para el padding y border */
+    width: calc(100% - 20px); /* Ajuste para el padding y border */
     margin-top: 10px;
 }
 
@@ -217,7 +281,6 @@ body {
 
 .capsula button {
     background-color: #f7d02c;
-    color: #333;
     cursor: pointer;
     font-weight: bold;
 }
@@ -226,7 +289,56 @@ body {
     background-color: #f4c300;
 }
 
-/* Ajuste de estilo en dispositivos móviles */
+/* Estilo para la tarjeta expandida */
+.pokemon-carta.expandida {
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    z-index: 10;
+    position: relative;
+}
+
+/* Modal para mostrar las localizaciones */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 100; /* Por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Habilita el scroll si es necesario */
+    background-color: rgba(0,0,0,0.5); /* Fondo semi-transparente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centrado vertical y horizontal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del contenido */
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
 @media (max-width: 768px) {
     #contenedor-pokemon {
         flex-direction: column;
